@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+/* Custom styles for dual range slider thumbs */
+.dual-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+.dual-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ffb020;
+  border: 2.5px solid #131313;
+  box-shadow: 0 0 8px rgba(255, 176, 32, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.dual-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(255, 176, 32, 0.8);
+}
+.dual-range-input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ffb020;
+  border: 2.5px solid #131313;
+  box-shadow: 0 0 8px rgba(255, 176, 32, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.dual-range-input::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(255, 176, 32, 0.8);
+}
+/* Active playback node pulse */
+@keyframes epochBeacon {
+  0% { box-shadow: 0 0 0 0 rgba(255, 176, 32, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 176, 32, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 176, 32, 0); }
+}
+.active-playback-node .epoch-beacon {
+  animation: epochBeacon 1.6s infinite ease-out;
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-highest":"#353534","inverse-on-surface":"#313030","on-surface-variant":"#d7c4ad","on-background":"#e5e2e1","secondary":"#fabc4d","primary":"#ffd59b","tertiary-container":"#b2c1d7","secondary-fixed":"#ffdead","secondary-fixed-dim":"#fabc4d","tertiary":"#ceddf3","on-primary-container":"#6b4600","surface":"#131313","on-tertiary-fixed":"#0d1c2d","background":"#131313","tertiary-fixed-dim":"#b9c8de","on-primary-fixed":"#291800","surface-dim":"#131313","surface-container-high":"#2a2a2a","on-tertiary":"#233143","on-primary-fixed-variant":"#624000","surface-tint":"#ffba4b","primary-fixed-dim":"#ffba4b","on-secondary-fixed-variant":"#604100","on-secondary-container":"#3a2600","on-tertiary-fixed-variant":"#39485a","inverse-surface":"#e5e2e1","error":"#ffb4ab","on-tertiary-container":"#414f61","on-secondary":"#432c00","on-error":"#690005","surface-bright":"#393939","surface-variant":"#353534","on-surface":"#e5e2e1","on-primary":"#442b00","tertiary-fixed":"#d4e4fa","primary-fixed":"#ffddb1","outline":"#9f8e79","outline-variant":"#524533","secondary-container":"#bd8718","on-secondary-fixed":"#281900","error-container":"#93000a","primary-container":"#ffb020","surface-container":"#201f1f","on-error-container":"#ffdad6","surface-container-lowest":"#0e0e0e","inverse-primary":"#815600","surface-container-low":"#1c1b1b"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"2.5rem","space-sm":"0.5rem","space-xs":"0.25rem","gutter-desktop":"1.5rem","space-md":"1rem","margin-tablet":"2rem","margin":"1rem","gutter":"1.25rem","margin-desktop":"3.5rem","space-lg":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"display-hero":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"display-hero-mobile":["Plus Jakarta Sans"],"body-md":["Inter"],"label-sm":["Inter"],"body-lg":["Inter"]},"fontSize":{"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"600"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"0","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-margin-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm cursor-pointer"><div class="w-7 h-7 bg-surface-container-high flex items-center justify-center rounded"><span class="material-symbols-outlined text-primary text-[18px]">architecture</span></div><span class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface">ARCHIVE <span class="text-outline">//</span> STYLES</span></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-low rounded"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">10 Movements Cataloged • Edition 2025</span></div></div><div class="hidden md:flex flex-1 max-w-md items-center"><div class="w-full flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer"><span class="material-symbols-outlined text-[16px]">search</span><span class="font-body-sm text-body-sm text-outline flex-1">Search archive (Bauhaus, De Stijl, Brutalism...)</span><kbd class="px-1.5 py-0.5 bg-surface-container-highest text-on-surface-variant rounded font-label-sm text-label-sm">⌘K</kbd></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a aria-current="page" class="px-space-sm py-1 uppercase tracking-wider transition-colors bg-primary-container text-on-primary-container font-semibold rounded" data-path="movement-catalog" href="#">Movements</a><a class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-path="epoch-timeline" href="#">Timeline</a><a class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-path="designer-registry" href="#">Designers</a><a class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-path="spec-sheets" href="#">Spec Sheets</a><a class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-path="manifesto-index" href="#">Manifestos</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Export Schema" class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">download</span></button><button aria-label="Repository" class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">code</span></button><button aria-label="Theme Mode" class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">contrast</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<!-- Toast Notification Container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-sm px-space-md py-space-sm bg-surface-container-high text-on-surface rounded shadow-xl" id="toast">
+<span class="material-symbols-outlined text-primary-container text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md tracking-wider uppercase" id="toast-message">Copied to clipboard</span>
+</div>
+<!-- Hero Section -->
+<section class="w-full px-margin-desktop py-space-xl flex flex-col gap-space-lg relative overflow-hidden">
+<!-- Atmospheric Ambient Glow -->
+<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-container/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-1/3 right-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Header Meta & Titles -->
+<div class="flex flex-col gap-space-sm max-w-4xl">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-primary-container/15 text-primary-container font-label-sm text-label-sm uppercase tracking-widest">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+          ARCHIVAL CORPUS // VOL. 01
+        </span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider hidden sm:inline">INDEX DIN 1451 REGISTER</span>
+</div>
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight">
+        The Anatomy of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-secondary to-primary">Design Movements</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+        A tactile, cross-disciplinary index exploring form, philosophy, and material truth from early 20th-century functionalism to contemporary digital frontiers.
+      </p>
+</div>
+<!-- Archival Quick Stats Ribbon -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md py-space-md">
+<div class="flex flex-col gap-0.5 bg-surface-container-low px-space-md py-space-sm rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Core Movements</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary-container font-bold">10</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Classified</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-low px-space-md py-space-sm rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Material Profiles</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">40</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Spectra</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-low px-space-md py-space-sm rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Cataloged Artifacts</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">30</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Preserved</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-low px-space-md py-space-sm rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Temporal Span</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md text-secondary font-bold">108</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Years Recorded</span>
+</div>
+</div>
+</div>
+<!-- Search & Filter Controls -->
+<div class="flex flex-col gap-space-md">
+<!-- Search Input -->
+<div class="relative w-full max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+</div>
+<input autocomplete="off" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-11 pr-20 py-space-sm rounded transition-all focus:outline-none focus:bg-surface-container-high placeholder:text-outline" id="search-input" placeholder="Filter movements by title, material, philosophy, or designer..." type="text" value=""/>
+<div class="absolute inset-y-0 right-0 pr-space-md flex items-center gap-1 pointer-events-none">
+<kbd class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant rounded font-label-sm text-label-sm shadow-sm">⌘K</kbd>
+</div>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs no-scrollbar" id="filter-pills-container">
+<button class="filter-pill active px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-primary-container text-on-primary-container font-semibold" data-filter="all">
+          All Movements
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="industrial">
+          Industrial &amp; Utilitarian
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="bauhaus">
+          Bauhaus &amp; Modernism
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="scandinavian">
+          Scandinavian &amp; Japandi
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="brutalism">
+          Brutalism
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="mid-century">
+          Mid-Century
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="postmodern">
+          Postmodern &amp; Memphis
+        </button>
+<button class="filter-pill px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider whitespace-nowrap transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" data-filter="digital-ui">
+          Digital UI Trends
+        </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Showcase -->
+<section class="w-full px-margin-desktop pb-space-lg" id="epoch-timeline-section"><div class="w-full bg-surface-container-low rounded-xl p-space-lg flex flex-col gap-space-md shadow-sm border-0 relative overflow-hidden"><div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-surface-container-highest"><div class="flex flex-col gap-1"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">CHRONOLOGICAL SPECTRUM // 1900 — PRESENT</span></div><h2 class="font-headline-sm text-headline-sm text-on-surface">Epoch Timeline: Evolution of Form &amp; Philosophy</h2><p class="font-body-sm text-body-sm text-on-surface-variant">Trace stylistic paradigm shifts across a century of material discipline, mechanical mass production, and digital spatial depth.</p></div><div class="flex items-center gap-space-sm self-start md:self-auto"><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider px-space-sm py-1 bg-surface-container-high rounded" id="active-epoch-indicator">Viewing: All Eras (1900 - 2025+)</span><button class="text-outline hover:text-on-surface text-label-sm font-label-sm uppercase tracking-wider px-space-xs py-1 transition-colors" id="timeline-reset-btn" title="Reset Timeline Filter">Reset</button></div></div>
+<!-- Interactive Playback & Step-through Archival Console -->
+<div class="w-full bg-surface-container/90 border border-white/10 rounded-lg p-space-sm md:p-space-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-sm shadow-sm backdrop-blur-sm" id="playback-console">
+<div class="flex items-center gap-space-xs sm:gap-space-sm flex-wrap">
+<!-- Play / Pause Button -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-container text-on-primary-container font-label-md text-label-md font-bold uppercase tracking-wider rounded transition-all hover:brightness-110 active:scale-95 shadow-sm" id="playback-play-btn" title="Toggle Auto-Play Through Eras">
+<span class="material-symbols-outlined text-[18px]" id="playback-play-icon">play_arrow</span>
+<span id="playback-play-text">PLAY</span>
+</button>
+<!-- Prev Era Button -->
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface hover:text-primary transition-colors font-label-md text-label-md uppercase tracking-wider rounded" id="playback-prev-btn" title="Step Back to Previous Era">
+<span class="material-symbols-outlined text-[16px]">skip_previous</span>
+<span class="hidden sm:inline">PREV ERA</span>
+</button>
+<!-- Next Era Button -->
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface hover:text-primary transition-colors font-label-md text-label-md uppercase tracking-wider rounded" id="playback-next-btn" title="Step Forward to Next Era">
+<span class="hidden sm:inline">NEXT ERA</span>
+<span class="material-symbols-outlined text-[16px]">skip_next</span>
+</button>
+<!-- Playback Speed Selectors -->
+<div class="flex items-center bg-surface-container-highest rounded p-0.5 gap-0.5 ml-1">
+<button class="playback-speed-pill px-2 py-0.5 rounded text-[11px] font-mono font-semibold uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" data-interval="3200">1x</button>
+<button class="playback-speed-pill px-2 py-0.5 rounded text-[11px] font-mono font-semibold uppercase tracking-wider bg-primary-container text-on-primary-container active transition-colors" data-interval="2000">1.5x</button>
+<button class="playback-speed-pill px-2 py-0.5 rounded text-[11px] font-mono font-semibold uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" data-interval="1200">2x</button>
+</div>
+</div>
+<!-- Playback Status Ticker & Progress Bar -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm flex-1 lg:max-w-xl lg:ml-space-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline transition-colors" id="playback-status-dot"></span>
+<span class="font-label-sm text-label-sm font-mono text-outline uppercase tracking-wider" id="playback-status-ticker">AUTO-CHRONOLOGY: STANDBY • READY</span>
+</div>
+<div class="w-full sm:w-44 flex flex-col gap-1">
+<div class="flex justify-between items-center text-[10px] font-mono text-outline uppercase">
+<span>ERA STEP</span>
+<span class="text-primary-container font-semibold" id="playback-step-readout">-- / 7</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-secondary transition-all duration-300 rounded-full" id="playback-step-bar" style="width: 0%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Dual Year Range Slider Control Panel -->
+<div class="w-full bg-surface-container/70 border border-white/10 rounded-lg p-space-md flex flex-col gap-space-sm shadow-sm backdrop-blur-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-1 border-b border-surface-container-highest/60">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary-container">tune</span>
+        FILTER BY SPAN // ACTIVE RANGE:
+      </span>
+<span class="font-mono font-bold text-headline-sm text-primary-container px-2 py-0.5 bg-surface-container-highest rounded border border-primary-container/20" id="range-readout-years">
+        1900 — 2025+
+      </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-container/15 text-primary-container font-semibold uppercase tracking-wider" id="range-match-count">
+        10 / 10 Movements Active
+      </span>
+</div>
+<button class="text-outline hover:text-primary transition-colors text-label-sm font-label-sm uppercase tracking-wider inline-flex items-center gap-1 self-start sm:self-auto" id="range-reset-btn" title="Reset Range Slider">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Reset Range
+    </button>
+</div>
+<!-- Dual Slider Track Container -->
+<div class="relative w-full pt-4 pb-2 px-1">
+<!-- Base Gray Track -->
+<div class="w-full h-2 bg-surface-container-highest rounded-full relative overflow-hidden">
+<!-- Active Amber Fill Bar -->
+<div class="absolute top-0 bottom-0 bg-gradient-to-r from-primary-container via-secondary to-primary rounded-full transition-all duration-75" id="slider-range-fill" style="left: 0%; width: 100%;"></div>
+</div>
+<!-- Min Year Range Input -->
+<input aria-label="Minimum Year" autocomplete="off" class="dual-range-input absolute top-4 left-0 w-full h-2 -translate-y-1/2 z-20 cursor-pointer" id="min-year-slider" max="2025" min="1900" step="1" type="range" value="1900"/>
+<!-- Max Year Range Input -->
+<input aria-label="Maximum Year" autocomplete="off" class="dual-range-input absolute top-4 left-0 w-full h-2 -translate-y-1/2 z-20 cursor-pointer" id="max-year-slider" max="2025" min="1900" step="1" type="range" value="2025"/>
+<!-- Scale Legend Ticks -->
+<div class="flex justify-between items-center text-[10px] font-mono text-outline uppercase tracking-wider mt-2.5 px-0.5">
+<span>1900</span>
+<span class="hidden sm:inline">1925</span>
+<span>1950</span>
+<span class="hidden sm:inline">1975</span>
+<span class="hidden sm:inline">2000</span>
+<span>2025+</span>
+</div>
+</div>
+<!-- Quick Preset Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar pt-1">
+<span class="font-label-sm text-[10px] text-outline uppercase tracking-widest hidden md:inline mr-1">PRESETS:</span>
+<button class="range-preset-pill active px-space-sm py-1 rounded text-label-sm font-label-sm uppercase tracking-wider whitespace-nowrap bg-primary-container text-on-primary-container font-semibold transition-colors" data-max="2025" data-min="1900">
+      All Eras (1900 - 2025+)
+    </button>
+<button class="range-preset-pill px-space-sm py-1 rounded text-label-sm font-label-sm uppercase tracking-wider whitespace-nowrap bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-max="1940" data-min="1900">
+      Early Modernism (1900 - 1940)
+    </button>
+<button class="range-preset-pill px-space-sm py-1 rounded text-label-sm font-label-sm uppercase tracking-wider whitespace-nowrap bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-max="1975" data-min="1940">
+      Mid-Century &amp; Brutalism (1940 - 1975)
+    </button>
+<button class="range-preset-pill px-space-sm py-1 rounded text-label-sm font-label-sm uppercase tracking-wider whitespace-nowrap bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-max="2025" data-min="1975">
+      Postmodern to Digital (1975 - 2025+)
+    </button>
+</div>
+</div>
+<div class="relative w-full overflow-x-auto no-scrollbar py-space-sm"><div class="relative min-w-[900px] flex items-stretch justify-between gap-space-sm pt-6 pb-2"><div class="absolute top-[35px] left-3 right-3 h-[2px] bg-surface-container-highest -z-0 pointer-events-none"><div class="h-full bg-gradient-to-r from-primary-container via-secondary to-primary w-full opacity-60 transition-all duration-500" id="timeline-progress-bar"></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="bauhaus" data-era-label="1919 – 1933: Early Modernism &amp; Bauhaus" data-year-end="1933" data-year-start="1919"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-primary-container">1919</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Bauhaus Modernism</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Geometric Economy</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Wassily Chair B3</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">M. Breuer (1925)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="scandinavian" data-era-label="1930s – Contemp: Organic Craft &amp; Japandi" data-year-end="2025" data-year-start="1930"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-outline group-hover:border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-on-surface-variant group-hover:text-primary-container">1932</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Scandinavian &amp; Japandi</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Tactile Warmth &amp; Craft</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Paimio Chair 41</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">Alvar Aalto (1932)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="mid-century" data-era-label="1945 – 1969: Mid-Century Atomic Optimism" data-year-end="1969" data-year-start="1945"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-outline group-hover:border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-on-surface-variant group-hover:text-primary-container">1948</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Mid-Century Modern</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Biomorphic Silhouette</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Eames Lounge 670</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">C. &amp; R. Eames (1956)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="brutalism" data-era-label="1950s – 1970s: Heroic Brutalism &amp; Béton Brut" data-year-end="1975" data-year-start="1950"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-outline group-hover:border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-on-surface-variant group-hover:text-primary-container">1954</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Architectural Brutalism</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Raw Concrete Honesty</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Unité d'Habitation</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">Le Corbusier (1952)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="industrial" data-era-label="1955 – Present: Industrial Functionalism (Braun/Ulm)" data-year-end="2025" data-year-start="1955"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-outline group-hover:border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-on-surface-variant group-hover:text-primary-container">1958</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Industrial Functionalism</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Less, But Better</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Braun SK4 Phono</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">Dieter Rams (1956)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="all" data-era-label="1980s – 2000s: Postmodernism &amp; Early GUI" data-year-end="2005" data-year-start="1980"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-outline group-hover:border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-background"></div></div><span class="font-mono font-bold text-label-md text-on-surface-variant group-hover:text-primary-container">1984</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Postmodern / Early GUI</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Deconstructive Digital</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Macintosh 128K</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">Susan Kare GUI (1984)</span></div></div><div class="epoch-node group flex-1 flex flex-col items-center cursor-pointer text-center relative z-10 transition-transform duration-300 hover:-translate-y-1" data-epoch-id="digital-ui" data-era-label="2020s – Future: Spatial Computing &amp; Dimensional UI" data-year-end="2025" data-year-start="2020"><div class="epoch-beacon w-4 h-4 rounded-full bg-surface-container-highest border-2 border-primary-container group-hover:scale-125 group-hover:bg-primary-container transition-all flex items-center justify-center mb-space-xs shadow-sm"><div class="w-1.5 h-1.5 rounded-full bg-primary-container"></div></div><span class="font-mono font-bold text-label-md text-primary-container">2024</span><span class="font-label-sm text-label-sm text-on-surface font-semibold mt-0.5">Spatial &amp; Dimensional UI</span><span class="font-body-sm text-[11px] text-outline line-clamp-1 max-w-[110px] mt-0.5">Refractive Specular Depth</span><div class="mt-space-sm w-full max-w-[120px] bg-surface-container hover:bg-surface-container-high px-space-xs py-1 rounded flex flex-col items-center gap-0.5 border border-surface-container-highest group-hover:border-primary-container/40 transition-colors shadow-sm"><div class="flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary-container"></span><span class="font-label-sm text-[9px] uppercase tracking-wider text-outline group-hover:text-primary-container">ARTIFACT</span></div><span class="font-mono text-body-sm text-[11px] text-on-surface font-medium line-clamp-1">Spatial Glass UI</span><span class="font-label-sm text-[9px] text-on-surface-variant line-clamp-1 italic">visionOS (2024)</span></div></div></div></div></div></section><section class="w-full px-margin-desktop pb-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="movements-grid">
+<!-- CARD 1: Bauhaus -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="bauhaus" data-movement-id="bauhaus" data-year-end="1933" data-year-start="1919">
+<div class="flex flex-col">
+<!-- Card Header & Badge -->
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1919 – 1933</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">WEIMAR • DESSAU</span>
+</div>
+<!-- Visual Artifact Preview Banner -->
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Monochrome photograph of the iconic Bauhaus Dessau building corner facade featuring sharp geometric glass curtain walls and industrial steel framing under crisp daylight, austere architectural minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu_rxzc0SwLDAA9w8mkpEpKIRWIFgaX75GZsV_vdTPM5VcxRqN-plrz6KwJQVskpMijyP2hmOCwAowWI0tnPOjU-NOKL_vu0WQDl_IJTXUnY2kaUaJrrJpeGJj3nB6DvE2PWTT95kd_FEhiqQES5YAL-m8appjv75IRejRPQcC45h4_o388JXCeDEn7YyrArWlDlqb6dAANVUUoUSupMSDAp-D7vAC-udzn_KbGJg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: WASSILY B3</span>
+</div>
+</div>
+<!-- Card Body Content -->
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Bauhaus &amp; Functional Modernism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Radical synthesis of fine art and craft championing the elimination of ornamentation. The form emerges strictly from structural purpose, creating timeless geometric utility.
+            </p>
+<!-- Metadata Specs List -->
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Tubular Steel, Bent Plywood, Cast Glass</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Pure Geometry, Asymmetric Balance</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer: Color Swatches & Action -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#D62828] hover:scale-125 transition-transform" data-hex="#D62828" title="#D62828 - Primary Red"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#003049] hover:scale-125 transition-transform" data-hex="#003049" title="#003049 - Bauhaus Cobalt"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#F77F00] hover:scale-125 transition-transform" data-hex="#F77F00" title="#F77F00 - Cadmium Orange"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#EAE2B7] hover:scale-125 transition-transform" data-hex="#EAE2B7" title="#EAE2B7 - Raw Linen Canvas"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="bauhaus">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 2: Industrial & Utilitarian -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="industrial" data-movement-id="industrial" data-year-end="2025" data-year-start="1955">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1955 – Present</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">FRANKFURT • ULM</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Macro photography of a Dieter Rams era Braun industrial analog audio receiver turntable dial, matte white anodized aluminum casing with graphite knurled dials and pristine Helvetica typography, ultra-clean studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Q4nlc9RoF6juJOgaMhCMj-SLIgV7r1hHosdS54oe5W3wVE7Z9NSEqclE4blJH0Jp-Z1kW6mCFbq6sPuf9xVPRieC3vZRJqY9wgcs3dCaj0y4SRqzZkvIQrX3jOmL2NtlLugaR43vtYFxSKUwwm1g_jJrMN8PQxQYKYb7AlSzriyvokxJYyaA-Vb6OmcyAWRGUIscwqw9gB5aMYelAUA3s1e3cmXBpDhCZfcLOes"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: BRAUN SK4 / T3</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Industrial Functionalism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Understated engineering where design is as little design as possible. Stripping away superficial decoration in favor of intuitive ergonomics and honest manufacturing.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Matte Anodized Aluminum, Bakelite, ABS</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Orthogonal Chassis, Dial Ergonomics</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#F8F9FA] hover:scale-125 transition-transform" data-hex="#F8F9FA" title="#F8F9FA - Signal Matte White"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#2B2D42] hover:scale-125 transition-transform" data-hex="#2B2D42" title="#2B2D42 - Graphite Dieter Black"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#E5A93C] hover:scale-125 transition-transform" data-hex="#E5A93C" title="#E5A93C - Dieter Amber Indicator"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#8D99AE] hover:scale-125 transition-transform" data-hex="#8D99AE" title="#8D99AE - Anodized Slate Grey"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="industrial">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 3: Brutalism -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="brutalism" data-movement-id="brutalism" data-year-end="1975" data-year-start="1950">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1950s – 1970s</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">UK • INTNL</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Imposing angular brutalist concrete architecture facade with coarse board-marked timber impressions, colossal cantilevers casting dark sharp architectural shadows under an overcast sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2j7k7A6u5a60Xy9qU-FERS6VaP8a1tZj3_vY36MA-EabUrcHbh9OwTxnUvioeGpUc9gCGu9e9-qdhJ5HA4vl4AYm_1TMcWwjepGVPstBA-anD2mPWJutipvbtDdpzRmHpIjLaU-NycKTvglDIBZgPYEuYD7YSkAh5Ec53ig7uH_TZ6T0R0Iyw4csdQ4qBrz744y_BWg-XmkFEGOtpQ39rGtl5dcPHqta7zCAzW_8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: BÉTON BRUT</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Architectural &amp; Raw Brutalism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Unapologetic honesty of materials celebrating unfinished surfaces, heavy geometric masses, and visible structural infrastructure without decorative pretense.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Béton Brut Concrete, Rebar, Timber Cast</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Massive Cantilevers, Monolithic Weight</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#8C8C8C] hover:scale-125 transition-transform" data-hex="#8C8C8C" title="#8C8C8C - Monolithic Ash"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#3F3F3F] hover:scale-125 transition-transform" data-hex="#3F3F3F" title="#3F3F3F - Raw Umber Aggregate"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#D3D3D3] hover:scale-125 transition-transform" data-hex="#D3D3D3" title="#D3D3D3 - Cured Cement Parget"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#E65100] hover:scale-125 transition-transform" data-hex="#E65100" title="#E65100 - Hazard Industrial Orange"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="brutalism">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 4: Scandinavian & Japandi -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="scandinavian" data-movement-id="scandinavian" data-year-end="2025" data-year-start="1930">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1930s – Contemp.</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">NORDIC • KYOTO</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Interior architectural scene featuring handcrafted light steam-bent birch armchair with natural paper cord weave seat, coarse textured stoneware tea vessel, soft diffused zen morning sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXF3qr-FpBmL8X4h7jiBPnloCDiFZYqYdSWT2stisbv474yz9-CPB2B4POKDdAkOUV71V7-lCciUtsbqM0bYpDo61szDzRgMLXMMKZjxU_yOKOU9nrMNBY55lmM4mXNKjC6FIqtt1Tsa51xm1Q8jdk3kzidN88DLwsDeEoDsk7JB1Xv5ACZGInb4yWB66UpsujUZclC7TL7bwAML4fScXB6bK13E4cSTN10OWawnI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: WISHBONE CH24</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Scandinavian &amp; Japandi Synthesis
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Warm minimalist living honoring organic warmth, craft imperfection (Wabi-sabi), and ergonomic tranquility. Spaces and objects that breathe human comfort.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">White Oak, Paper Cord, Stoneware</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Sculpted Curves, Low-slung Profiles</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#D8C4B6] hover:scale-125 transition-transform" data-hex="#D8C4B6" title="#D8C4B6 - Bleached Birch"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#ECEBE4] hover:scale-125 transition-transform" data-hex="#ECEBE4" title="#ECEBE4 - Oatmeal Woven Linen"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#4F772D] hover:scale-125 transition-transform" data-hex="#4F772D" title="#4F772D - Forest Pine Moss"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#2B2D2F] hover:scale-125 transition-transform" data-hex="#2B2D2F" title="#2B2D2F - Sumi Ink Charcoal"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="scandinavian">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 5: Mid-Century Modern -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="mid-century" data-movement-id="mid-century" data-year-end="1969" data-year-start="1945">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1945 – 1969</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">CALIFORNIA • MILAN</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Sculptural mid-century modern lounge chair featuring bent dark santos rosewood veneers with tufted deep black leather cushions, tapered brass-tipped legs beside an atomic starburst clock." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWQtDsNPfe8z4uQRozZdA_5WA3K-m2vZrY95ioF5cMLR5giBagYw7DANNOEm35CJQZIaVZRp62emQhtJm5njA8MrIzc_XAQExi_HmljBESMDUzEAde7JQtvK1lnqa-HDiJg_IkjQHzAPEMvDbHxzgFElJMknQ2lMZ8HpYuW-_hZRMadOn0BNs-6MUgMZw7ag1WpTK84rRhBFaOd-Cq6EoRbQfo7G22XEgrPE8sRI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: EAMES LOUNGE 670</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Mid-Century Modernism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Post-war optimism blending industrial production with sculptural organic silhouettes. Clean lines, fluid transitions, and seamless indoor-outdoor harmony.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Molded Rosewood, Fiberglass, Spun Brass</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Sculptural Curves, Biomorphic Volumes</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#C27D38] hover:scale-125 transition-transform" data-hex="#C27D38" title="#C27D38 - Warm Burnt Saffron"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#586B4D] hover:scale-125 transition-transform" data-hex="#586B4D" title="#586B4D - Olive Ochre"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#4A2E18] hover:scale-125 transition-transform" data-hex="#4A2E18" title="#4A2E18 - Walnut Core"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#A3C9A8] hover:scale-125 transition-transform" data-hex="#A3C9A8" title="#A3C9A8 - Muted Seafoam Tint"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="mid-century">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 6: Digital UI Trends -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="digital-ui" data-movement-id="digital-ui" data-year-end="2025" data-year-start="2020">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">2020s – Future</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">SPATIAL • GLOBAL</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Futuristic spatial computing graphical interface rendered with multi-layered frosted glass panels, refractive specular light edges, glowing cyan and electric amber interactive cards floating in deep obsidian space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvESLhWKw1grrfofrPPa69CusM3OpUVEoRdDat-OIh8KJ7kad0vV4lRt6exq2Tu5UIMK8rLOtpseQSe9XpHFBfLAPJY_9uIUFEIHg3074E7js6CzMCNIWbcDNWVLivawd9V3B4YAST3PBKDa-zwn6yIm6M7nDGIOJHS8vH9P026aA6uJuE5ON6EjSPssMTyJyAlhkdPjaF--Ne_rBG4ZIENC_4DlCqMFhh2YPs628"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: SPATIAL GLASS</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Spatial &amp; Dimensional UI
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Multi-layered dynamic interfaces utilizing real-time specular lighting, physical material refraction, micro-depth cards, and tactile fluid interactions.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Frosted Acrylic, OLED Black, Refraction</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">2.5D Layering, Spring Motion Curves</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#0A0A0A] hover:scale-125 transition-transform" data-hex="#0A0A0A" title="#0A0A0A - Deep OLED Void"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#FFB020] hover:scale-125 transition-transform" data-hex="#FFB020" title="#FFB020 - Neon Electric Amber"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#06B6D4] hover:scale-125 transition-transform" data-hex="#06B6D4" title="#06B6D4 - Specular Cyan Plasma"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#3B82F6] hover:scale-125 transition-transform" data-hex="#3B82F6" title="#3B82F6 - Dimensional Cobalt Blue"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="digital-ui">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 7: De Stijl / Neoplasticism -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="bauhaus" data-movement-id="de-stijl" data-year-end="1931" data-year-start="1917">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1917 – 1931</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">LEIDEN • UTRECHT</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Geometric De Stijl composition featuring strict orthogonal black grid lines intersecting pure primary red, blue, and yellow planes in architectural harmony." src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: RED &amp; BLUE CHAIR</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              De Stijl / Neoplasticism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Pure abstraction and universality achieved by reducing visual vocabulary to perpendicular horizontal and vertical lines, primary hues, and non-colors.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Lacquered Beechwood, Painted Plywood, Steel</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Orthogonal Grids, Intersecting Planes</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#E30022] hover:scale-125 transition-transform" data-hex="#E30022" title="#E30022 - Neoplastic Cadmium Red"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#0047AB] hover:scale-125 transition-transform" data-hex="#0047AB" title="#0047AB - Rietveld Ultramarine"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#FFD300] hover:scale-125 transition-transform" data-hex="#FFD300" title="#FFD300 - Mondrian Primary Yellow"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#1C1C1C] hover:scale-125 transition-transform" data-hex="#1C1C1C" title="#1C1C1C - Orthogonal Grid Black"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="de-stijl">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 8: Art Deco / Streamline Moderne -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="industrial" data-movement-id="streamline" data-year-end="1939" data-year-start="1920">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1920s – 1930s</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">NEW YORK • PARIS</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Aerodynamic Art Deco and Streamline Moderne architectural details with polished chrome speed lines, curved glass corners, and dramatic machine-age symmetry." src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: COLDSPOT SUPER SIX</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Art Deco / Streamline Moderne
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Machine-age elegance celebrating velocity, aerodynamic curves, and industrial glamour. Frictionless teardrop hulls and horizontal speed lines applied to everyday appliances.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Polished Chrome, Porcelain Enamel, Bakelite</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Aerodynamic Curves, Speed Striations</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#D4AF37] hover:scale-125 transition-transform" data-hex="#D4AF37" title="#D4AF37 - Chrysler Sunburst Gold"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#C0C5CE] hover:scale-125 transition-transform" data-hex="#C0C5CE" title="#C0C5CE - Streamline Mirror Chrome"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#114B5F] hover:scale-125 transition-transform" data-hex="#114B5F" title="#114B5F - Transatlantic Deep Teal"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#1A1817] hover:scale-125 transition-transform" data-hex="#1A1817" title="#1A1817 - Phenolic Bakelite Jet"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="streamline">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 9: Japanese Metabolism / Wabi Modern -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="brutalism" data-movement-id="metabolism" data-year-end="1975" data-year-start="1960">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1960s – 1970s</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">TOKYO • GINZA</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Modular architectural megastructure inspired by Tokyo Nakagin Capsule Tower with repetitive prefabricated geometric pods and circular porthole windows." src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: NAKAGIN CAPSULE</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Japanese Metabolism / Wabi Modern
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Post-war avant-garde architecture fusing biological regeneration cycles with replaceable prefabricated living capsules anchored to permanent megastructure cores.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Welded Steel Trusses, FRP Molded Pods, Concrete</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Plug-in Cellular Modules, Circular Apertures</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#DCE0D9] hover:scale-125 transition-transform" data-hex="#DCE0D9" title="#DCE0D9 - Capsule Enamel Off-White"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#5C6460] hover:scale-125 transition-transform" data-hex="#5C6460" title="#5C6460 - Ginza Steel Core Grey"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#C85A32] hover:scale-125 transition-transform" data-hex="#C85A32" title="#C85A32 - Oxide Primer Terracotta"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#2E382E] hover:scale-125 transition-transform" data-hex="#2E382E" title="#2E382E - Metabolic Cypress Patina"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="metabolism">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 10: Memphis Design -->
+<article class="movement-card group bg-surface-container flex flex-col justify-between rounded hover:bg-surface-container-high transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl" data-category="postmodern" data-movement-id="memphis" data-year-end="1987" data-year-start="1981">
+<div class="flex flex-col">
+<div class="p-space-md flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-semibold">1981 – 1987</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">MILAN • ITALY</span>
+</div>
+<div class="relative h-52 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-95" data-alt="Vibrant postmodern Memphis design composition with bold clashing geometric laminates, Bacterio squiggle patterns, and asymmetric totem shapes." src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-0.5 rounded text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">ARCHETYPE: CARLTON BOOKCASE</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+              Memphis Design &amp; Radical Postmodernism
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+              Subversive rebellion against austere corporate functionalism, unleashing vibrant plastic laminates, Bacterio graphic patterns, and playful geometric totems.
+            </p>
+<div class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Materials:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Print HPL Laminate, Terrazzo, Lacquered MDF</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider min-w-[70px]">Form:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Asymmetric Totems, Clashing Geometries</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest hidden sm:inline">SWATCH</span>
+<div class="flex items-center gap-1.5">
+<button class="color-swatch w-5 h-5 rounded-full bg-[#FF3366] hover:scale-125 transition-transform" data-hex="#FF3366" title="#FF3366 - Flamingo Plastic Pink"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#00E5FF] hover:scale-125 transition-transform" data-hex="#00E5FF" title="#00E5FF - Tahiti Electric Cyan"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#FFEA00] hover:scale-125 transition-transform" data-hex="#FFEA00" title="#FFEA00 -Milanese Lemon Laminate"></button>
+<button class="color-swatch w-5 h-5 rounded-full bg-[#1E1E24] hover:scale-125 transition-transform" data-hex="#1E1E24" title="#1E1E24 - Bacterio Graphic Ink"></button>
+</div>
+</div>
+<button class="inspect-btn inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-label-md font-label-md uppercase tracking-wider rounded transition-colors" data-inspect="memphis">
+            Inspect <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Empty State for Filters -->
+<div class="hidden flex-col items-center justify-center p-space-xl text-center bg-surface-container-low rounded my-space-lg" id="no-results">
+<span class="material-symbols-outlined text-outline text-[48px] mb-space-sm">manage_search</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No movements matching criteria</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-1">Try refining your search keyword, adjusting the year range slider, or selecting a different movement category.</p>
+<button class="mt-space-md px-space-md py-1.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-wider rounded font-semibold" id="reset-filters">
+        Reset Archive Query
+      </button>
+</div>
+</section>
+<!-- Interactive Movement Dossier Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin-tablet sm:p-margin-desktop bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" id="dossier-modal">
+<div class="relative w-full max-w-4xl max-h-[90vh] bg-surface-container-high rounded shadow-2xl overflow-hidden flex flex-col border-0">
+<!-- Modal Header Bar -->
+<div class="px-space-lg py-space-md bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">ARCHIVAL DOSSIER // DEEP INSPECTION</span>
+</div>
+<button aria-label="Close Modal" class="w-8 h-8 rounded bg-surface-container-highest hover:bg-surface-container text-on-surface flex items-center justify-center transition-colors" id="close-modal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Scrollable Content -->
+<div class="overflow-y-auto p-space-lg flex flex-col gap-space-lg no-scrollbar">
+<!-- Header Overview Info -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-container font-semibold bg-primary-container/10 px-space-xs py-0.5 rounded" id="modal-era"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline" id="modal-geo"></span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface" id="modal-title"></h2>
+<p class="font-body-lg text-body-lg text-secondary italic" id="modal-philosophy"></p>
+</div>
+<!-- Dossier Navigation Tabs -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1 rounded">
+<button class="modal-tab px-space-md py-1 rounded text-label-md font-label-md uppercase tracking-wider text-on-primary-container bg-primary-container font-semibold transition-colors" data-tab="overview">
+            Overview &amp; Philosophy
+          </button>
+<button class="modal-tab px-space-md py-1 rounded text-label-md font-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-tab="artifacts">
+            Object Study
+          </button>
+<button class="modal-tab px-space-md py-1 rounded text-label-md font-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-tab="specs">
+            Material Specs
+          </button>
+</div>
+<!-- Tab 1: Overview -->
+<div class="tab-panel flex flex-col gap-space-md" id="tab-overview">
+<div class="p-space-md bg-surface-container rounded">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-space-xs">Movement Synthesis</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="modal-desc"></p>
+</div>
+<!-- Key Figures / Designers Card -->
+<div class="flex flex-col gap-space-xs">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider">Pivotal Figures &amp; Pioneers</h4>
+<div class="flex flex-wrap gap-space-xs" id="modal-designers"></div>
+</div>
+</div>
+<!-- Tab 2: Artifacts -->
+<div class="tab-panel hidden flex-col gap-space-md" id="tab-artifacts">
+<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm">
+<div class="flex items-baseline justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="modal-artifact-name"></h4>
+<span class="font-label-sm text-label-sm text-primary-container uppercase" id="modal-artifact-year"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant" id="modal-artifact-analysis"></p>
+<div class="mt-space-sm p-space-md bg-surface-container-low rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Curatorial Status</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Master Reference Verified</span>
+</div>
+</div>
+</div>
+<!-- Tab 3: Specs -->
+<div class="tab-panel hidden flex-col gap-space-md" id="tab-specs">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md bg-surface-container rounded flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Fabrication Substrates</span>
+<p class="font-body-md text-body-md text-on-surface font-mono" id="modal-spec-materials"></p>
+</div>
+<div class="p-space-md bg-surface-container rounded flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Formal Geometry &amp; Grid</span>
+<p class="font-body-md text-body-md text-on-surface font-mono" id="modal-spec-forms"></p>
+</div>
+<div class="col-span-1 md:col-span-2 p-space-md bg-surface-container rounded flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Standard Palette Coordinates</span>
+<div class="flex flex-wrap gap-space-md mt-space-xs" id="modal-spec-swatches"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-space-lg py-space-sm bg-surface-container flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Press [ESC] to dismiss dossier view</span>
+<button class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-primary-container transition-colors uppercase tracking-wider" id="modal-copy-citation">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Copy Citation Record
+        </button>
+</div>
+</div>
+</div>
+<!-- Inline Script for Interactions -->
+<script>
+    (function () {
+      // Archival Movements Dataset
+      const movementsData = {
+        bauhaus: {
+          id: 'bauhaus',
+          title: 'Bauhaus & Functional Modernism',
+          era: '1919 – 1933',
+          geo: 'Weimar & Dessau, Germany',
+          philosophy: '"Form follows function with absolute geometric economy."',
+          description: 'Established by Walter Gropius, the Bauhaus unified crafts, fine art, and modern manufacturing technology. It systematically dismantled nineteenth-century bourgeois ornamentation, constructing an austere visual grammar rooted in primary geometries, tubular steel, and typographic functionalism.',
+          designers: ['Walter Gropius', 'Marcel Breuer', 'Marianne Brandt', 'László Moholy-Nagy', 'Ludwig Mies van der Rohe'],
+          artifact: {
+            name: 'Wassily Chair (Model B3)',
+            year: '1925',
+            analysis: 'Inspired by the curved tubular steel handlebars of an Adler bicycle, Marcel Breuer stripped the traditional club armchair down to its structural skeleton, utilizing cold-drawn tubular steel and stretched eisengarn fabric.'
+          },
+          specs: {
+            materials: 'Cold-bent nickel-plated tubular steel, Eisengarn heavy waxed yarn, float glass, structural plywood.',
+            forms: 'Equilateral triangles, squares, circles, asymmetric grid layouts, dynamic diagonal typography.',
+            palette: [
+              { hex: '#D62828', label: 'Primary Red' },
+              { hex: '#003049', label: 'Bauhaus Cobalt' },
+              { hex: '#F77F00', label: 'Cadmium Orange' },
+              { hex: '#EAE2B7', label: 'Raw Linen Canvas' }
+            ]
+          }
+        },
+        industrial: {
+          id: 'industrial',
+          title: 'Industrial Functionalism',
+          era: '1955 – Present',
+          geo: 'Frankfurt & Ulm, Germany',
+          philosophy: '"Weniger, aber besser (Less, but better)."',
+          description: 'Spearheaded by Dieter Rams and the Ulm School of Design (HfG Ulm), industrial functionalism elevates honest user clarity over fleeting styling. Every control dial, tactile switch, and chassis enclosure is calibrated to eliminate distraction and maximize unadorned utility.',
+          designers: ['Dieter Rams', 'Dietrich Lubs', 'Otl Aicher', 'Hans Gugelot', 'Richard Sapper'],
+          artifact: {
+            name: 'Braun SK4 / Phonosuper ("Snow White’s Coffin")',
+            year: '1956',
+            analysis: 'Designed by Rams and Gugelot, replacing traditional wood cabinet radiograms with an acrylic glass dust cover and pure white sheet-metal housing, setting the blueprint for consumer electronics for half a century.'
+          },
+          specs: {
+            materials: 'Anodized matte aluminum, thermoformed ABS, crystal-clear acrylic sheets, vulcanized rubber.',
+            forms: 'Strict orthogonal chassis, precision concentric volume knurls, flush indicator apertures.',
+            palette: [
+              { hex: '#F8F9FA', label: 'Signal Matte White' },
+              { hex: '#2B2D42', label: 'Graphite Dieter Black' },
+              { hex: '#E5A93C', label: 'Dieter Amber Indicator' },
+              { hex: '#8D99AE', label: 'Anodized Slate Grey' }
+            ]
+          }
+        },
+        brutalism: {
+          id: 'brutalism',
+          title: 'Architectural & Raw Brutalism',
+          era: '1950s – 1970s',
+          geo: 'United Kingdom, France & Global',
+          philosophy: '"Truth to raw materials without decorative deception."',
+          description: 'Coined from Le Corbusier\'s term Béton Brut (raw concrete), Brutalism prioritized moral honesty in construction. Buildings and forms explicitly exposed heavy structural weight, board-marked timber impressions, aggregate textures, and functional circulation shafts.',
+          designers: ['Le Corbusier', 'Alison & Peter Smithson', 'Ernő Goldfinger', 'Denys Lasdun', 'Marcel Breuer'],
+          artifact: {
+            name: 'Unité d\'Habitation, Marseille',
+            year: '1952',
+            analysis: 'An immense self-contained vertical residential city block elevated on gigantic raw-concrete pilotis, expressing rough timber shuttering patterns cast directly from Mediterranean construction forms.'
+          },
+          specs: {
+            materials: 'Béton brut concrete, exposed rebar skeletons, rough-sawn timber casts, cast iron brackets.',
+            forms: 'Monolithic massing, extreme cantilevers, repetitive rhythmic fenestrations, exposed ducts.',
+            palette: [
+              { hex: '#8C8C8C', label: 'Monolithic Ash' },
+              { hex: '#3F3F3F', label: 'Raw Umber Aggregate' },
+              { hex: '#D3D3D3', label: 'Cured Cement Parget' },
+              { hex: '#E65100', label: 'Hazard Industrial Orange' }
+            ]
+          }
+        },
+        scandinavian: {
+          id: 'scandinavian',
+          title: 'Scandinavian & Japandi Synthesis',
+          era: '1930s – Contemporary',
+          geo: 'Nordic Countries & Kyoto, Japan',
+          philosophy: '"Organic tranquility, tactile warmth, and imperfect craft harmony."',
+          description: 'A harmonious intersection between Nordic organic modernism and traditional Japanese Wabi-sabi. Emphasizes honest wooden joinery, natural woven textiles, ergonomic warmth, and serene spatial proportions that elevate daily ritual.',
+          designers: ['Hans Wegner', 'Alvar Aalto', 'Arne Jacobsen', 'Sori Yanagi', 'Børge Mogensen'],
+          artifact: {
+            name: 'Wishbone Chair (CH24)',
+            year: '1949',
+            analysis: 'Hans J. Wegner\'s masterpiece combining steam-bent solid ash wood with over 120 meters of hand-woven natural unbleached paper cord, achieving ergonomic lightweight durability through exquisite craft joinery.'
+          },
+          specs: {
+            materials: 'Steam-bent white ash, soap-finished oak, unbleached paper cord, coarse stoneware clay.',
+            forms: 'Gently curved ergonomic backrests, sculpted tactile wood joints, low-slung tranquil sightlines.',
+            palette: [
+              { hex: '#D8C4B6', label: 'Bleached Birch' },
+              { hex: '#ECEBE4', label: 'Oatmeal Woven Linen' },
+              { hex: '#4F772D', label: 'Forest Pine Moss' },
+              { hex: '#2B2D2F', label: 'Sumi Ink Charcoal' }
+            ]
+          }
+        },
+        'mid-century': {
+          id: 'mid-century',
+          title: 'Mid-Century Modernism',
+          era: '1945 – 1969',
+          geo: 'California, US & Milan, Italy',
+          philosophy: '"Optimistic organic forms harmonizing technology with human life."',
+          description: 'Emerging in post-World War II prosperity, Mid-Century Modernism merged technological wartime advances (molded plywood, molded fiberglass, industrial adhesives) with biomorphic shapes, vibrant accent palettes, and seamless integration with the natural landscape.',
+          designers: ['Charles & Ray Eames', 'Eero Saarinen', 'George Nelson', 'Florence Knoll', 'Isamu Noguchi'],
+          artifact: {
+            name: 'Eames Lounge & Ottoman (Model 670/671)',
+            year: '1956',
+            analysis: 'Charles and Ray Eames envisioned a chair with "the warm, receptive look of a well-used first baseman\'s mitt." Crafted from three curved molded rosewood plywood shells cushioned with glove-soft leather.'
+          },
+          specs: {
+            materials: 'Five-ply molded rosewood veneers, cast aluminum swivels, spun brass hardware, top-grain leather.',
+            forms: 'Biomorphic contours, tapered cigar legs, organic starburst symmetry, expansive glass planes.',
+            palette: [
+              { hex: '#C27D38', label: 'Warm Burnt Saffron' },
+              { hex: '#586B4D', label: 'Olive Ochre' },
+              { hex: '#4A2E18', label: 'Walnut Core' },
+              { hex: '#A3C9A8', label: 'Muted Seafoam Tint' }
+            ]
+          }
+        },
+        'digital-ui': {
+          id: 'digital-ui',
+          title: 'Spatial & Dimensional UI',
+          era: '2020s – Future',
+          geo: 'Silicon Valley & Global Digital Frontiers',
+          philosophy: '"Physics-informed depth, physical refraction, and ambient luminance."',
+          description: 'A contemporary evolution beyond flat digital interfaces into dimensional computing. Synthesizes frosted glassmorphic refraction, dynamic real-time specular highlights, 2.5D card elevation, and continuous spring kinematics to ground digital software in physical reality.',
+          designers: ['Apple Human Interface Group', 'Humane Spatial Lab', 'Dynamic Land Pioneers', 'Figma Systems Lab'],
+          artifact: {
+            name: 'Spatial Computing Glass Canvas',
+            year: '2024',
+            analysis: 'An interface paradigm where surfaces cast real-time shadows onto the physical room environment, dynamically sampling room luminance to generate micro-specular rim lighting along 0.5px frosted border coordinates.'
+          },
+          specs: {
+            materials: 'Variable blur glassmorphism, OLED true-black substrate, real-time specular shaders, CSS canvas.',
+            forms: 'Continuous squircles (super-ellipses), sub-pixel hairline boundaries, spring-damping motion.',
+            palette: [
+              { hex: '#0A0A0A', label: 'Deep OLED Void' },
+              { hex: '#FFB020', label: 'Neon Electric Amber' },
+              { hex: '#06B6D4', label: 'Specular Cyan Plasma' },
+              { hex: '#3B82F6', label: 'Dimensional Cobalt Blue' }
+            ]
+          }
+        },
+        'de-stijl': {
+          id: 'de-stijl',
+          title: 'De Stijl / Neoplasticism',
+          era: '1917 – 1931',
+          geo: 'Leiden & Utrecht, Netherlands',
+          philosophy: '"Pure abstraction through strict orthogonal geometry and primary chromatic truth."',
+          description: 'Founded in the Netherlands by Theo van Doesburg, Piet Mondrian, and Gerrit Rietveld, De Stijl ("The Style") sought universal harmony after World War I. Rejecting naturalistic representation, Neoplasticism restricted design strictly to horizontal and vertical directions alongside pure primary colors (red, blue, yellow) and non-colors (black, white, grey).',
+          designers: ['Gerrit Rietveld', 'Piet Mondrian', 'Theo van Doesburg', 'J.J.P. Oud', 'Vilmos Huszár'],
+          artifact: {
+            name: 'Red and Blue Chair (Rood-blauwe stoel)',
+            year: '1918 / 1923',
+            analysis: 'Designed by Gerrit Rietveld as a three-dimensional translation of a Mondrian canvas. Linear black-stained beechwood rails intersect without traditional mortise joints (using dowel pins), making the inclined red backrest and blue seat appear to float weightlessly in space.'
+          },
+          specs: {
+            materials: 'Lacquered solid beechwood laths, multi-ply birch panels, primary enamel pigments, hardwood dowels.',
+            forms: 'Strict 90-degree orthogonal intersections, floating planar projections, asymmetric spatial equilibrium.',
+            palette: [
+              { hex: '#E30022', label: 'Neoplastic Cadmium Red' },
+              { hex: '#0047AB', label: 'Rietveld Ultramarine' },
+              { hex: '#FFD300', label: 'Mondrian Primary Yellow' },
+              { hex: '#1C1C1C', label: 'Orthogonal Grid Black' }
+            ]
+          }
+        },
+        streamline: {
+          id: 'streamline',
+          title: 'Art Deco / Streamline Moderne',
+          era: '1920s – 1930s',
+          geo: 'New York, Chicago & Paris',
+          philosophy: '"Aerodynamic velocity and machine-age optimism sculpted into everyday utility."',
+          description: 'Evolving from ornamental 1920s Art Deco during the Great Depression, Streamline Moderne translated wind-tunnel aerodynamics from aviation and high-speed locomotives into domestic architecture and industrial consumer goods. Sharp corners yielded to sweeping teardrop curves, horizontal speed lines, and gleaming chrome trim.',
+          designers: ['Raymond Loewy', 'Norman Bel Geddes', 'Henry Dreyfuss', 'Walter Dorwin Teague', 'Kem Weber'],
+          artifact: {
+            name: 'Sears Coldspot "Super Six" Refrigerator',
+            year: '1935',
+            analysis: 'Raymond Loewy transformed an awkward, exposed-coil kitchen utility box into a monolithic, aerodynamic sculpture stamped from white porcelain-enameled sheet steel with a central vertical ribbed aluminum fascia and effortless feather-touch latch.'
+          },
+          specs: {
+            materials: 'Stamped sheet steel, porcelain white enamel, electroplated mirror chrome, phenolic Bakelite resin, glass block.',
+            forms: 'Teardrop parabolic hulls, triple horizontal "speed whiskers", radiused bullnose corners, nautical portholes.',
+            palette: [
+              { hex: '#D4AF37', label: 'Chrysler Sunburst Gold' },
+              { hex: '#C0C5CE', label: 'Streamline Mirror Chrome' },
+              { hex: '#114B5F', label: 'Transatlantic Deep Teal' },
+              { hex: '#1A1817', label: 'Phenolic Bakelite Jet' }
+            ]
+          }
+        },
+        metabolism: {
+          id: 'metabolism',
+          title: 'Japanese Metabolism / Wabi Modern',
+          era: '1960s – 1970s',
+          geo: 'Tokyo & Kyoto, Japan',
+          philosophy: '"Architecture as an organic, self-renewing biological megastructure."',
+          description: 'Launched at the 1960 Tokyo World Design Conference, the Metabolist avant-garde reimagined postwar cities as living organisms capable of cellular growth and metabolic renewal. By pairing permanent concrete-and-steel infrastructure spines with detachable prefabricated capsules, buildings could evolve alongside shifting human needs while honoring traditional Japanese modular spatial economy.',
+          designers: ['Kisho Kurokawa', 'Kiyonori Kikutake', 'Kenzo Tange', 'Fumihiko Maki', 'Arata Isozaki'],
+          artifact: {
+            name: 'Nakagin Capsule Tower, Ginza',
+            year: '1972',
+            analysis: 'Kisho Kurokawa\'s iconic realization of metabolic urbanism: 140 prefabricated steel capsules—each a compact 2.5 × 4 meter autonomous living pod with integrated Sony audio console, molded FRP bathroom unit, and circular porthole window—bolted onto two reinforced concrete shafts with just four high-tension bolts.'
+          },
+          specs: {
+            materials: 'Welded lightweight steel shipping-container trusses, fiberglass-reinforced plastic (FRP), sprayed Kenitex insulation, pre-stressed concrete.',
+            forms: 'Cantilevered cellular plug-in pods, drum porthole apertures, spiral service cores, tatami-scaled interior modularity.',
+            palette: [
+              { hex: '#DCE0D9', label: 'Capsule Enamel Off-White' },
+              { hex: '#5C6460', label: 'Ginza Steel Core Grey' },
+              { hex: '#C85A32', label: 'Oxide Primer Terracotta' },
+              { hex: '#2E382E', label: 'Metabolic Cypress Patina' }
+            ]
+          }
+        },
+        memphis: {
+          id: 'memphis',
+          title: 'Memphis Design & Radical Postmodernism',
+          era: '1981 – 1987',
+          geo: 'Milan, Italy',
+          philosophy: '"Form follows emotion, irony, and sensory liberation over austere dogma."',
+          description: 'Founded in Milan by Ettore Sottsass and a collective of young international designers on December 11, 1980 (named after Bob Dylan\'s "Stuck Inside of Mobile with the Memphis Blues Again"), the Memphis Group staged a joyful coup against joyless late-modernist "black box" functionalism. Combining Pop Art vibrant colors, 1950s kitsch motifs, and industrial Abet Laminati surfaces, they turned furniture into communicative cultural totems.',
+          designers: ['Ettore Sottsass', 'Michele De Lucchi', 'Nathalie Du Pasquier', 'Matteo Thun', 'Shiro Kuramata'],
+          artifact: {
+            name: 'Carlton Room Divider & Bookcase',
+            year: '1981',
+            analysis: 'Ettore Sottsass\'s flagship manifesto object: an anthropomorphic architectural totem constructed from MDF clad in vivid high-pressure plastic laminates featuring diagonal shelves, void triangles, and a base printed with his iconic squiggly "Bacterio" pattern.'
+          },
+          specs: {
+            materials: 'Abet Laminati Print HPL plastic laminate, polychrome lacquered MDF, terrazzo conglomerate, tubular powder-coated steel, neon glass tubes.',
+            forms: 'Asymmetric anthropomorphic totems, canted diagonal dividers, clashing cylinders/cones/spheres, Bacterio & confetti surface graphics.',
+            palette: [
+              { hex: '#FF3366', label: 'Flamingo Plastic Pink' },
+              { hex: '#00E5FF', label: 'Tahiti Electric Cyan' },
+              { hex: '#FFEA00', label: 'Milanese Lemon Laminate' },
+              { hex: '#1E1E24', label: 'Bacterio Graphic Ink' }
+            ]
+          }
+        }
+      };
+
+      // Toast Notification System
+      const toastEl = document.getElementById('toast');
+      const toastMsgEl = document.getElementById('toast-message');
+      let toastTimer = null;
+
+      function triggerToast(message) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMsgEl.textContent = message;
+        toastEl.classList.remove('opacity-0', 'translate-y-16');
+        toastEl.classList.add('opacity-100', 'translate-y-0');
+
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('opacity-100', 'translate-y-0');
+          toastEl.classList.add('opacity-0', 'translate-y-16');
+        }, 2200);
+      }
+
+      // Swatch Click to Copy
+      document.querySelectorAll('.color-swatch').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const hex = btn.getAttribute('data-hex');
+          if (navigator.clipboard && hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+              triggerToast(`Copied ${hex} to clipboard!`);
+            }).catch(() => {
+              triggerToast(`Color: ${hex}`);
+            });
+          }
+        });
+      });
+
+      // Filter Pills & Search Filtering
+      const cards = document.querySelectorAll('.movement-card');
+      const filterPills = document.querySelectorAll('.filter-pill');
+      const searchInput = document.getElementById('search-input');
+      const noResults = document.getElementById('no-results');
+      const resetBtn = document.getElementById('reset-filters');
+
+      let currentFilter = 'all';
+      let currentQuery = '';
+      let filterMinYear = 1900;
+      let filterMaxYear = 2025;
+
+      // Range Slider DOM Elements
+      const minSlider = document.getElementById('min-year-slider');
+      const maxSlider = document.getElementById('max-year-slider');
+      const sliderFill = document.getElementById('slider-range-fill');
+      const rangeReadout = document.getElementById('range-readout-years');
+      const matchCountBadge = document.getElementById('range-match-count');
+      const presetPills = document.querySelectorAll('.range-preset-pill');
+      const rangeResetBtn = document.getElementById('range-reset-btn');
+      const epochNodes = document.querySelectorAll('.epoch-node');
+
+      function updateRangeSliderVisuals() {
+        let minVal = parseInt(minSlider.value, 10);
+        let maxVal = parseInt(maxSlider.value, 10);
+
+        if (minVal > maxVal) {
+          const temp = minVal;
+          minVal = maxVal;
+          maxVal = temp;
+          minSlider.value = minVal;
+          maxSlider.value = maxVal;
+        }
+
+        filterMinYear = minVal;
+        filterMaxYear = maxVal;
+
+        const totalSpan = 2025 - 1900;
+        const leftPercent = ((minVal - 1900) / totalSpan) * 100;
+        const widthPercent = ((maxVal - minVal) / totalSpan) * 100;
+
+        if (sliderFill) {
+          sliderFill.style.left = `${leftPercent}%`;
+          sliderFill.style.width = `${widthPercent}%`;
+        }
+
+        if (rangeReadout) {
+          const maxDisplay = maxVal === 2025 ? '2025+' : maxVal;
+          rangeReadout.textContent = `${minVal} — ${maxDisplay}`;
+        }
+
+        // Highlight/Dim visual epoch nodes
+        epochNodes.forEach(node => {
+          const nStart = parseInt(node.getAttribute('data-year-start'), 10) || 1900;
+          const nEnd = parseInt(node.getAttribute('data-year-end'), 10) || 2025;
+          const isInRange = (nStart <= maxVal && nEnd >= minVal);
+          if (isInRange) {
+            node.classList.remove('opacity-25', 'grayscale');
+            node.classList.add('opacity-100');
+          } else {
+            node.classList.add('opacity-25', 'grayscale');
+            node.classList.remove('opacity-100');
+          }
+        });
+
+        applyFiltering();
+      }
+
+      function applyFiltering() {
+        let visibleCount = 0;
+        const query = currentQuery.toLowerCase().trim();
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const title = card.querySelector('h2').textContent.toLowerCase();
+          const body = card.textContent.toLowerCase();
+
+          const cardStart = parseInt(card.getAttribute('data-year-start'), 10) || 1900;
+          const cardEnd = parseInt(card.getAttribute('data-year-end'), 10) || 2025;
+          const matchesYear = (cardStart <= filterMaxYear && cardEnd >= filterMinYear);
+
+          const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+          const matchesQuery = !query || title.includes(query) || body.includes(query);
+
+          if (matchesCategory && matchesQuery && matchesYear) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (matchCountBadge) {
+          matchCountBadge.textContent = `${visibleCount} / ${cards.length} Movements Active`;
+        }
+
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+          noResults.classList.add('flex');
+        } else {
+          noResults.classList.add('hidden');
+          noResults.classList.remove('flex');
+        }
+      }
+
+      if (minSlider && maxSlider) {
+        minSlider.addEventListener('input', () => {
+          if (parseInt(minSlider.value, 10) > parseInt(maxSlider.value, 10)) {
+            minSlider.value = maxSlider.value;
+          }
+          syncPresetPillState();
+          updateRangeSliderVisuals();
+        });
+
+        maxSlider.addEventListener('input', () => {
+          if (parseInt(maxSlider.value, 10) < parseInt(minSlider.value, 10)) {
+            maxSlider.value = minSlider.value;
+          }
+          syncPresetPillState();
+          updateRangeSliderVisuals();
+        });
+      }
+
+      function syncPresetPillState() {
+        const curMin = parseInt(minSlider.value, 10);
+        const curMax = parseInt(maxSlider.value, 10);
+        presetPills.forEach(p => {
+          const pMin = parseInt(p.getAttribute('data-min'), 10);
+          const pMax = parseInt(p.getAttribute('data-max'), 10);
+          if (pMin === curMin && pMax === curMax) {
+            p.classList.add('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            p.classList.remove('bg-surface-container', 'text-on-surface-variant');
+          } else {
+            p.classList.remove('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            p.classList.add('bg-surface-container', 'text-on-surface-variant');
+          }
+        });
+      }
+
+      presetPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const pMin = parseInt(pill.getAttribute('data-min'), 10);
+          const pMax = parseInt(pill.getAttribute('data-max'), 10);
+          minSlider.value = pMin;
+          maxSlider.value = pMax;
+          syncPresetPillState();
+          updateRangeSliderVisuals();
+          triggerToast(`Span updated: ${pMin} — ${pMax === 2025 ? '2025+' : pMax}`);
+        });
+      });
+
+      function resetRangeToDefault() {
+        if (minSlider && maxSlider) {
+          minSlider.value = 1900;
+          maxSlider.value = 2025;
+          syncPresetPillState();
+          updateRangeSliderVisuals();
+        }
+      }
+
+      if (rangeResetBtn) {
+        rangeResetBtn.addEventListener('click', resetRangeToDefault);
+      }
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => {
+            p.classList.remove('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          });
+
+          pill.classList.add('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+          pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+
+          currentFilter = pill.getAttribute('data-filter');
+          applyFiltering();
+        });
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = e.target.value;
+        applyFiltering();
+      });
+
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        currentQuery = '';
+        resetRangeToDefault();
+        const allPill = document.querySelector('[data-filter="all"]');
+        if (allPill) allPill.click();
+      });
+
+      // Command+K Shortcut for Search
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === 'Escape' && isModalOpen) {
+          closeModal();
+        }
+      });
+
+      // Modal Dossier Logic
+      const modal = document.getElementById('dossier-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      let isModalOpen = false;
+
+      const modalEra = document.getElementById('modal-era');
+      const modalGeo = document.getElementById('modal-geo');
+      const modalTitle = document.getElementById('modal-title');
+      const modalPhilosophy = document.getElementById('modal-philosophy');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalDesigners = document.getElementById('modal-designers');
+      const modalArtifactName = document.getElementById('modal-artifact-name');
+      const modalArtifactYear = document.getElementById('modal-artifact-year');
+      const modalArtifactAnalysis = document.getElementById('modal-artifact-analysis');
+      const modalSpecMaterials = document.getElementById('modal-spec-materials');
+      const modalSpecForms = document.getElementById('modal-spec-forms');
+      const modalSpecSwatches = document.getElementById('modal-spec-swatches');
+      const copyCitationBtn = document.getElementById('modal-copy-citation');
+
+      function openModal(movementId) {
+        const data = movementsData[movementId];
+        if (!data) return;
+
+        modalEra.textContent = data.era;
+        modalGeo.textContent = data.geo;
+        modalTitle.textContent = data.title;
+        modalPhilosophy.textContent = data.philosophy;
+        modalDesc.textContent = data.description;
+
+        // Designers tags
+        modalDesigners.innerHTML = '';
+        data.designers.forEach(name => {
+          const badge = document.createElement('span');
+          badge.className = 'px-space-sm py-1 bg-surface-container-highest text-on-surface font-label-md text-label-md uppercase tracking-wider rounded';
+          badge.textContent = name;
+          modalDesigners.appendChild(badge);
+        });
+
+        // Artifact study
+        modalArtifactName.textContent = data.artifact.name;
+        modalArtifactYear.textContent = `Originated: ${data.artifact.year}`;
+        modalArtifactAnalysis.textContent = data.artifact.analysis;
+
+        // Specs
+        modalSpecMaterials.textContent = data.specs.materials;
+        modalSpecForms.textContent = data.specs.forms;
+
+        // Modal swatches
+        modalSpecSwatches.innerHTML = '';
+        data.specs.palette.forEach(swatch => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded cursor-pointer hover:bg-surface-container-highest transition-colors';
+          wrapper.innerHTML = `
+            <span class="w-3.5 h-3.5 rounded-full" style="background-color: ${swatch.hex};"></span>
+            <span class="font-label-sm text-label-sm font-mono text-on-surface">${swatch.hex}</span>
+            <span class="font-label-sm text-label-sm text-outline hidden sm:inline">&bull; ${swatch.label}</span>
+          `;
+          wrapper.addEventListener('click', () => {
+            navigator.clipboard.writeText(swatch.hex);
+            triggerToast(`Copied ${swatch.hex} to clipboard!`);
+          });
+          modalSpecSwatches.appendChild(wrapper);
+        });
+
+        // Reset to first tab
+        switchTab('overview');
+
+        // Show Modal
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+        isModalOpen = true;
+      }
+
+      function closeModal() {
+        modal.classList.remove('opacity-100', 'pointer-events-auto');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        isModalOpen = false;
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Attach Inspect Movement buttons and card clicks
+      document.querySelectorAll('.inspect-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const mid = btn.getAttribute('data-inspect');
+          openModal(mid);
+        });
+      });
+
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.color-swatch') || e.target.closest('.inspect-btn')) return;
+          const mid = card.getAttribute('data-movement-id');
+          if (mid) openModal(mid);
+        });
+      });
+
+      // Dossier Tabs Navigation
+      const modalTabs = document.querySelectorAll('.modal-tab');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      function switchTab(tabId) {
+        modalTabs.forEach(t => {
+          if (t.getAttribute('data-tab') === tabId) {
+            t.classList.add('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            t.classList.remove('text-on-surface-variant');
+          } else {
+            t.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            t.classList.add('text-on-surface-variant');
+          }
+        });
+
+        tabPanels.forEach(p => {
+          if (p.id === `tab-${tabId}`) {
+            p.classList.remove('hidden');
+            p.classList.add('flex');
+          } else {
+            p.classList.add('hidden');
+            p.classList.remove('flex');
+          }
+        });
+      }
+
+      modalTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          switchTab(tabId);
+        });
+      });
+
+      // Citation record button
+      copyCitationBtn.addEventListener('click', () => {
+        const title = modalTitle.textContent;
+        const era = modalEra.textContent;
+        const geo = modalGeo.textContent;
+        const citation = `Archive // Styles. "Dossier: ${title} (${era}, ${geo})". Curatorial Index ISSN 2940-1081. Accessed 2025.`;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(citation).then(() => {
+            triggerToast('Archival Citation Copied!');
+          });
+        }
+      });
+
+      // Ensure initial state always displays all 10 movements (1900 - 2025+, filter = 'all')
+      function initArchiveDefaults() {
+        currentFilter = 'all';
+        currentQuery = '';
+        filterMinYear = 1900;
+        filterMaxYear = 2025;
+        if (searchInput) searchInput.value = '';
+        filterPills.forEach(p => {
+          if (p.getAttribute('data-filter') === 'all') {
+            p.classList.add('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            p.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          } else {
+            p.classList.remove('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          }
+        });
+        resetRangeToDefault();
+      }
+
+      initArchiveDefaults();
+      window.addEventListener('pageshow', initArchiveDefaults);
+    })();
+  </script>
+<script class="">(function(){
+  const epochNodes = Array.from(document.querySelectorAll('.epoch-node'));
+  const indicator = document.getElementById('active-epoch-indicator');
+  const resetBtn = document.getElementById('timeline-reset-btn');
+
+  // Playback Control Elements
+  const playBtn = document.getElementById('playback-play-btn');
+  const playIcon = document.getElementById('playback-play-icon');
+  const playText = document.getElementById('playback-play-text');
+  const prevBtn = document.getElementById('playback-prev-btn');
+  const nextBtn = document.getElementById('playback-next-btn');
+  const statusDot = document.getElementById('playback-status-dot');
+  const statusTicker = document.getElementById('playback-status-ticker');
+  const stepReadout = document.getElementById('playback-step-readout');
+  const stepBar = document.getElementById('playback-step-bar');
+  const speedPills = document.querySelectorAll('.playback-speed-pill');
+
+  let isPlaying = false;
+  let playInterval = null;
+  let currentStepIndex = -1;
+  let playbackSpeed = 2000; // ms per step
+
+  function activateEpoch(node, manualTrigger = true){
+    const epochId = node.getAttribute('data-epoch-id');
+    const eraLabel = node.getAttribute('data-era-label');
+    const yStart = parseInt(node.getAttribute('data-year-start'),10);
+    const yEnd = parseInt(node.getAttribute('data-year-end'),10);
+    
+    // Find node index
+    currentStepIndex = epochNodes.indexOf(node);
+    
+    epochNodes.forEach((n, idx) => {
+      const beacon = n.querySelector('.epoch-beacon');
+      if(n === node){
+        n.classList.add('active-playback-node');
+        if (beacon) {
+          beacon.classList.remove('border-outline');
+          beacon.classList.add('border-primary-container', 'bg-primary-container', 'scale-125');
+        }
+      } else {
+        n.classList.remove('active-playback-node');
+        if (beacon) {
+          beacon.classList.remove('bg-primary-container', 'scale-125');
+          beacon.classList.add('border-outline');
+        }
+      }
+    });
+
+    if(indicator && eraLabel){
+      indicator.textContent = 'Viewing: ' + eraLabel;
+    }
+
+    // Synchronize range slider
+    const minS = document.getElementById('min-year-slider');
+    const maxS = document.getElementById('max-year-slider');
+    if(minS && maxS && yStart && yEnd){
+      minS.value = yStart;
+      maxS.value = yEnd;
+      minS.dispatchEvent(new Event('input'));
+    }
+
+    // Filter pill synchronization
+    const pill = document.querySelector(`.filter-pill[data-filter="${epochId}"]`);
+    if(pill){
+      pill.click();
+    } else if(epochId === 'all'){
+      const allPill = document.querySelector('.filter-pill[data-filter="all"]');
+      if(allPill) allPill.click();
+    }
+
+    // Scroll epoch node smoothly into view if on small screens
+    node.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+    // Update Step Ticker UI
+    updatePlaybackStepUI(currentStepIndex);
+
+    // If manually clicked while auto-playing, stop auto-play gracefully unless triggered by auto
+    if(manualTrigger && isPlaying){
+      pausePlayback();
+    }
+  }
+
+  function updatePlaybackStepUI(index) {
+    const total = epochNodes.length;
+    if (index >= 0 && index < total) {
+      const node = epochNodes[index];
+      const eraLabel = node.getAttribute('data-era-label') || '';
+      const shortName = eraLabel.split(':')[1] ? eraLabel.split(':')[1].trim() : eraLabel;
+      if (stepReadout) {
+        stepReadout.textContent = `${index + 1} / ${total}`;
+      }
+      if (stepBar) {
+        const percent = ((index + 1) / total) * 100;
+        stepBar.style.width = `${percent}%`;
+      }
+      if (statusTicker) {
+        if (isPlaying) {
+          statusTicker.textContent = `STEPPING [${index + 1}/${total}]: ${shortName.toUpperCase()}`;
+        } else {
+          statusTicker.textContent = `SELECTED [${index + 1}/${total}]: ${shortName.toUpperCase()}`;
+        }
+      }
+    } else {
+      if (stepReadout) stepReadout.textContent = `-- / ${total}`;
+      if (stepBar) stepBar.style.width = '0%';
+      if (statusTicker) statusTicker.textContent = 'AUTO-CHRONOLOGY: STANDBY • READY';
+    }
+  }
+
+  function startPlayback() {
+    if (epochNodes.length === 0) return;
+    isPlaying = true;
+
+    if (playBtn) {
+      playBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
+      playBtn.classList.add('bg-[#ffba4b]', 'text-[#291800]', 'ring-2', 'ring-primary-container/80');
+    }
+    if (playIcon) playIcon.textContent = 'pause';
+    if (playText) playText.textContent = 'PAUSE';
+
+    if (statusDot) {
+      statusDot.classList.remove('bg-outline');
+      statusDot.classList.add('bg-primary-container', 'animate-ping');
+    }
+
+    // If at end or unselected, start at 0
+    if (currentStepIndex === -1 || currentStepIndex >= epochNodes.length - 1) {
+      currentStepIndex = 0;
+    } else {
+      currentStepIndex++;
+    }
+
+    activateEpoch(epochNodes[currentStepIndex], false);
+
+    if (playInterval) clearInterval(playInterval);
+    playInterval = setInterval(() => {
+      currentStepIndex++;
+      if (currentStepIndex >= epochNodes.length) {
+        // Loop back smoothly to beginning
+        currentStepIndex = 0;
+      }
+      activateEpoch(epochNodes[currentStepIndex], false);
+    }, playbackSpeed);
+  }
+
+  function pausePlayback() {
+    isPlaying = false;
+    if (playInterval) {
+      clearInterval(playInterval);
+      playInterval = null;
+    }
+    if (playBtn) {
+      playBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+      playBtn.classList.remove('bg-[#ffba4b]', 'text-[#291800]', 'ring-2', 'ring-primary-container/80');
+    }
+    if (playIcon) playIcon.textContent = 'play_arrow';
+    if (playText) playText.textContent = 'PLAY';
+
+    if (statusDot) {
+      statusDot.classList.remove('bg-primary-container', 'animate-ping');
+      statusDot.classList.add('bg-outline');
+    }
+    if (statusTicker) {
+      statusTicker.textContent = 'AUTO-CHRONOLOGY: PAUSED';
+    }
+  }
+
+  function stepPrev() {
+    if (isPlaying) pausePlayback();
+    if (currentStepIndex <= 0) {
+      currentStepIndex = epochNodes.length - 1;
+    } else {
+      currentStepIndex--;
+    }
+    activateEpoch(epochNodes[currentStepIndex], true);
+  }
+
+  function stepNext() {
+    if (isPlaying) pausePlayback();
+    if (currentStepIndex >= epochNodes.length - 1 || currentStepIndex === -1) {
+      currentStepIndex = 0;
+    } else {
+      currentStepIndex++;
+    }
+    activateEpoch(epochNodes[currentStepIndex], true);
+  }
+
+  // Bind Buttons
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        pausePlayback();
+      } else {
+        startPlayback();
+      }
+    });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', stepPrev);
+  if (nextBtn) nextBtn.addEventListener('click', stepNext);
+
+  // Speed selector pills
+  speedPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      speedPills.forEach(p => {
+        p.classList.remove('bg-primary-container', 'text-on-primary-container', 'active');
+        p.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      pill.classList.add('bg-primary-container', 'text-on-primary-container', 'active');
+      pill.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+      playbackSpeed = parseInt(pill.getAttribute('data-interval'), 10) || 2000;
+      if (isPlaying) {
+        clearInterval(playInterval);
+        playInterval = setInterval(() => {
+          currentStepIndex++;
+          if (currentStepIndex >= epochNodes.length) {
+            currentStepIndex = 0;
+          }
+          activateEpoch(epochNodes[currentStepIndex], false);
+        }, playbackSpeed);
+      }
+    });
+  });
+
+  // Epoch node manual clicks
+  epochNodes.forEach((node) => {
+    node.addEventListener('click', () => activateEpoch(node, true));
+  });
+
+  // Stop playback when sliders manually moved
+  const minSlider = document.getElementById('min-year-slider');
+  const maxSlider = document.getElementById('max-year-slider');
+  if (minSlider) {
+    minSlider.addEventListener('mousedown', () => { if (isPlaying) pausePlayback(); });
+    minSlider.addEventListener('touchstart', () => { if (isPlaying) pausePlayback(); });
+  }
+  if (maxSlider) {
+    maxSlider.addEventListener('mousedown', () => { if (isPlaying) pausePlayback(); });
+    maxSlider.addEventListener('touchstart', () => { if (isPlaying) pausePlayback(); });
+  }
+
+  // Reset button logic
+  if(resetBtn){
+    resetBtn.addEventListener('click', () => {
+      if (isPlaying) pausePlayback();
+      currentStepIndex = -1;
+      epochNodes.forEach(n => {
+        n.classList.remove('active-playback-node');
+        const beacon = n.querySelector('.epoch-beacon');
+        if (beacon) {
+          beacon.classList.remove('bg-primary-container', 'scale-125');
+          beacon.classList.add('border-outline');
+        }
+      });
+      if(indicator) indicator.textContent = 'Viewing: All Eras (1900 - 2025+)';
+      updatePlaybackStepUI(-1);
+
+      const minS = document.getElementById('min-year-slider');
+      const maxS = document.getElementById('max-year-slider');
+      if(minS && maxS){
+        minS.value = 1900;
+        maxS.value = 2025;
+        minS.dispatchEvent(new Event('input'));
+      }
+      const allPill = document.querySelector('.filter-pill[data-filter="all"]');
+      if(allPill) allPill.click();
+    });
+  }
+})();</script></div></main><footer class="w-full bg-surface-container-lowest"><div class="w-full px-margin-desktop py-space-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md uppercase tracking-wider text-primary">ARCHIVE // STYLES</span><span class="font-label-sm text-label-sm text-outline">• ISSN 2940-1081</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Standardized curatorial index of historical architectural and industrial design movements. Prepared for academic preservation and typographic research.</p></div><div class="flex flex-wrap items-center gap-space-lg"><div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">INDEX PROTOCOL</span><span class="font-body-sm text-body-sm text-on-surface-variant">DIN 1451 • 12-Col Archival Grid</span></div><div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">STATUS</span><span class="font-body-sm text-body-sm text-on-surface-variant">Curated Public Reference</span></div></div></div><div class="w-full px-margin-desktop py-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-outline"><p class="">© 2025 Archive // Styles Foundation. Curated open ledger.</p><div class="flex items-center gap-space-md"><span class="hover:text-on-surface cursor-pointer">METADATA SCHEMA</span><span class="hover:text-on-surface cursor-pointer">CITATION FORMAT</span><span class="hover:text-on-surface cursor-pointer">COLOPHON</span></div></div></footer>
+</body></html>
